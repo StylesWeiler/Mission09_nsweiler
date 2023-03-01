@@ -5,7 +5,7 @@
 
 <h1>The Bookstore Project</h1>
 
-
+@* for each loop that creates a tag for each book based on the Book model *@
 @foreach (Book b in Model.Books)
 {
     <partial name="BookSummary" model="b" />

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Mission09_nsweiler.Models.ViewModels
 {
-    public class PageInfo
+    public class PageInfo // define the PageInfo class and it's attributes (wth getters and setters for each)
     {
         public int TotalNumBooks { get; set; }
         public int BooksPerPage { get; set; }

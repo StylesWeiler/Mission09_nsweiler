@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Mission09_nsweiler.Models.ViewModels
 {
-    public class BooksViewModel
+    public class BooksViewModel // Model for the bookView with getters and setters for the Book and PageInfo classes
     {
         public IQueryable<Book> Books { get; set; }
 

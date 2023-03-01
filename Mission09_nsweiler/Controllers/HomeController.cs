@@ -19,9 +19,11 @@ namespace Mission09_nsweiler.Controllers
         }
         public IActionResult Index(int pageNum = 1)
         {
-
+            // 10 books per page
             int pageSize = 10;
 
+
+            // define the Books and PageInfo
             var x = new BooksViewModel
             {
                 Books = repo.Books

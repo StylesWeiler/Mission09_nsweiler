@@ -4,6 +4,7 @@
 
 @model Book
 
+@* Here we provide the layout of the Book info using div tags *@
 <div class="card card-outsmallne-primary m-1 p-1">
     <div class="bg-faded p-1">
         <h4>
@@ -21,11 +22,6 @@
     <div class="card-text p-1">Category: @Model.Category</div>
     <div class="card-text p-1">Page Count: @Model.PageCount</div>
 
-
-@*<div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
-        page-class="btn" page-class-normal="btn-outline-dark"
-        page-class-selected="btn-primary" class="btn-group pull-right m-1">
-</div>*@
 </div>
 
 

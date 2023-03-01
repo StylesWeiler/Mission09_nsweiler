@@ -12,7 +12,7 @@ namespace Mission09_nsweiler.Models
     {
 
         public BookstoreContext(DbContextOptions<BookstoreContext> options)
-            : base(options)
+            : base(options) // inherits from the base options class
         {
         }
 
