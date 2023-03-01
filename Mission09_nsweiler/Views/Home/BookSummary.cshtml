@@ -10,7 +10,7 @@
             @Model.Title
 
             <span class="badge badge-pill badge-primary" style="float:right">
-                <small>Price: @Model.Price</small>
+                <small>Price: @Model.Price.ToString("c")</small>
             </span>
         </h4>
     </div>
@@ -20,5 +20,12 @@
     <div class="card-text p-1">Classification: @Model.Classification</div>
     <div class="card-text p-1">Category: @Model.Category</div>
     <div class="card-text p-1">Page Count: @Model.PageCount</div>
-    @* <div class="card-text p-1">Price: @b.Price</div>*@
+
+
+@*<div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
+        page-class="btn" page-class-normal="btn-outline-dark"
+        page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>*@
 </div>
+
+
