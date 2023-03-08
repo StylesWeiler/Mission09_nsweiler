@@ -43,6 +43,12 @@ namespace Mission09_nsweiler
 
             // each HTTP request gets it own repository object and this decouples the object
             services.AddScoped<IBookRepository, EFBookRepository>();
+
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
         }
             
 
@@ -56,13 +62,33 @@ namespace Mission09_nsweiler
 
             // correspondes with the wwwroot
             app.UseStaticFiles();
-
+            app.UseSession(); // sessions so that the cart values are resent when you leave the page
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                // doex the same thing as we have done previously where we made an endpoint that takes us to the home controller, then the Index page
+
+                endpoints.MapControllerRoute("typepage",
+                    "{categoryType}/Page{pageNum}",
+                    new { Controller = "Home", action = "Index" }
+                    
+                );
+
+                endpoints.MapControllerRoute("Paging", // needs to execute first or you'll still see the slug
+                   "Page{pageNum}",
+                    new { Controller = "Home", action = "Index", pageNum = 1 } // if this pattern is found in the url use this default
+                );
+
+                endpoints.MapControllerRoute("type",
+                    "{categoryType}",
+                    new { Controller = "Home", action = "Index", pageNum = 1 } // if only a type is passed, then go to page 1
+
+                );
+
+                // does the same thing as we have done previously where we made an endpoint that takes us to the home controller, then the Index page
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
 
             });
         }

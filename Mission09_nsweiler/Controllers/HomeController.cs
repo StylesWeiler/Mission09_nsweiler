@@ -17,7 +17,7 @@ namespace Mission09_nsweiler.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string categoryType, int pageNum = 1)
         {
             // 10 books per page
             int pageSize = 10;
@@ -27,13 +27,17 @@ namespace Mission09_nsweiler.Controllers
             var x = new BooksViewModel
             {
                 Books = repo.Books
+                .Where(b => b.Category == categoryType || categoryType == null)
                 .OrderBy(b => b.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBooks = repo.Books.Count(),
+                    TotalNumBooks = 
+                        (categoryType == null
+                        ? repo.Books.Count() 
+                        : repo.Books.Where(x => x.Category == categoryType).Count()),
                     BooksPerPage = pageSize,
                     CurrentPage = pageNum
                 }
