@@ -18,7 +18,7 @@ namespace Mission09_nsweiler.Components
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedType = RouteData?.Values["categoryType"]; // assign the value from the url 
+            ViewBag.SelectedTypes = RouteData?.Values["categoryType"]; // assign the value from the url 
 
             var types = repo.Books
                 .Select(x => x.Category)

@@ -22,10 +22,10 @@
         @foreach(var i in Model.basket.Items)
         {
         <tr>
-            <td>@i.Book</td>
+            <td>@i.Book.Title</td>
             <td>@i.Quantity</td>
-            <th>25</th>
-            <th>@(i.Quantity * 25)</th>
+            <th>@i.Price.ToString("c")</th>
+            <th>@((i.Quantity * i.Price).ToString("c"))</th>
         </tr>
         }
     </tbody>

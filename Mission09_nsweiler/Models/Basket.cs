@@ -9,7 +9,7 @@ namespace Mission09_nsweiler.Models
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>(); // declare and instantiate in one line
     
-        public void AddItem (Book book, int qty)
+        public void AddItem (Book book, int qty, double price)
         {
             BasketLineItem line = Items
                 .Where(b => b.Book.BookId == book.BookId)
@@ -20,7 +20,8 @@ namespace Mission09_nsweiler.Models
                 Items.Add(new BasketLineItem
                 {
                     Book = book,
-                    Quantity = qty
+                    Quantity = qty,
+                    Price = price
                 });
             }
             else
@@ -31,7 +32,7 @@ namespace Mission09_nsweiler.Models
 
         public double CalculateTotal()
         {
-            double sum = Items.Sum(x => x.Quantity * 25);
+            double sum = Items.Sum(x => x.Quantity * x.Price);
 
             return sum;
         }
@@ -43,6 +44,6 @@ namespace Mission09_nsweiler.Models
         public int LineID { get; set; }
         public Book Book { get; set; } //instance of Book class
         public int Quantity { get; set; }
-
+        public double Price { get; set; }
     }
 }

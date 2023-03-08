@@ -30,12 +30,13 @@ namespace Mission09_nsweiler.Pages
             basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
         }
 
-        public IActionResult OnPost(int id, string returnUrl)
+        public IActionResult OnPost(int bookId, string returnUrl)
         {
-            Book b = repo.Books.FirstOrDefault(x => x.BookId == id);
+            Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
+
 
             basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket(); // ?? is the null-coalescing operator. Returns the left side if it's null, otherwise it returns the right side
-            basket.AddItem(b, 1);
+            basket.AddItem(b, 1, b.Price);
 
             HttpContext.Session.setJson("basket", basket);
 
