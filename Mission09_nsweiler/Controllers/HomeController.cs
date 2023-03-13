@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mission09_nsweiler.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller // inheritance
     {
 
         private IBookRepository repo;

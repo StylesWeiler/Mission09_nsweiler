@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Mission09_nsweiler.Controllers
 {
-    public class PurchaseController : Controller
+    public class PurchaseController : Controller // inherits from the main Controller
     {
 
-        private IPurchaseRespository repo { get; set; }
+        private IPurchaseRespository repo { get; set; } // variable declarations for the repo and basket that are set in the method below
         private Basket basket { get; set; }
 
         public PurchaseController(IPurchaseRespository temp, Basket b)
@@ -20,13 +20,13 @@ namespace Mission09_nsweiler.Controllers
         }
 
         [HttpGet]
-        public IActionResult Checkout()
+        public IActionResult Checkout() // get method for the checkout that returns the purchase view
         {
             return View(new Purchase());
         }
 
         [HttpPost]
-        public IActionResult Checkout(Purchase purchase)
+        public IActionResult Checkout(Purchase purchase) // post method for the checkout that checks the number of items in the cart is greater than zero before saving the purchases
         {
             if(basket.Items.Count() == 0)
             {

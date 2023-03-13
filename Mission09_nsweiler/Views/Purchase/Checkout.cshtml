@@ -3,11 +3,13 @@
 
 @model Purchase
 
-<h2>Checkout now</h2>
+<h2>Checkout now</h2> 
+@* Checkout form that asks the user for address information that is connected to the ASP.NET framework through the tag helpers *@
 
 <form method="post" asp-controller="Purchase" asp-action="Checkout">
 
-    <div asp-validation-summary="All" class="text-danger"></div>
+    @* Validation error display if form has an empty field *@
+    <div asp-validation-summary="All" class="text-danger"></div> 
 
     <h4>Ship to:</h4>
 
