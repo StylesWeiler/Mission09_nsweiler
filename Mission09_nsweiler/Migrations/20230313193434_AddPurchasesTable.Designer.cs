@@ -9,7 +9,7 @@ using Mission09_nsweiler.Models;
 namespace Mission09_nsweiler.Migrations
 {
     [DbContext(typeof(BookstoreContext))]
-    [Migration("20230313191510_AddPurchasesTable")]
+    [Migration("20230313193434_AddPurchasesTable")]
     partial class AddPurchasesTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
