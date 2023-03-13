@@ -13,32 +13,32 @@ namespace Mission09_nsweiler.Pages
     {
 
         private IBookRepository repo { get; set; }
+        public Basket basket { get; set; }
+        public string ReturnUrl { get; set; }
 
-        public PurchaseModel (IBookRepository temp)
+        public PurchaseModel (IBookRepository temp, Basket b)
         {
             repo = temp;
+            basket = b; // assigning the basket variable with the incoming basket 
         }
-
-        public Basket basket { get; set; }
-
-        public string ReturnUrl { get; set; }
 
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
         }
 
         public IActionResult OnPost(int bookId, string returnUrl)
         {
             Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
-
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket(); // ?? is the null-coalescing operator. Returns the left side if it's null, otherwise it returns the right side
+             // ?? is the null-coalescing operator. Returns the left side if it's null, otherwise it returns the right side
             basket.AddItem(b, 1, b.Price);
 
-            HttpContext.Session.setJson("basket", basket);
+            return RedirectToPage(new { ReturnUrl = returnUrl });
+        }
+        public IActionResult OnPostRemove(int bookId, string returnUrl)
+        {
+            basket.RemoveItem(basket.Items.First(x => x.Book.BookId == bookId).Book); // search for the first Item with a matching bookId and then grab the associated Book
 
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }

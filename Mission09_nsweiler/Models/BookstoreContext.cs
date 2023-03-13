@@ -16,7 +16,8 @@ namespace Mission09_nsweiler.Models
         {
         }
 
-        public DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; } // each DbSet connects the given model to the database and names it whatever we dictate
+        public DbSet<Purchase> Purchases { get; set; }
 
     }
 }

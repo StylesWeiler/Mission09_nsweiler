@@ -43,12 +43,15 @@ namespace Mission09_nsweiler
 
             // each HTTP request gets it own repository object and this decouples the object
             services.AddScoped<IBookRepository, EFBookRepository>();
+            services.AddScoped<IPurchaseRespository, EFPurchaseRespository>();
 
             services.AddRazorPages();
 
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x)); // when we're dealing with the Basket.cs, call the GetBasket method to return a basket
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
             
 
